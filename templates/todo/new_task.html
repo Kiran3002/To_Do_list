@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<form class="container" method="POST" enctype="multipart/form-data">
+  <div class="col-6 offset-3">
+    <img src="{% static 'images/l3.jpg' %}" alt="" class="img-fluid">
+  </div>
+  {% csrf_token %}
+    <div class="mb-3 mt-5">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" class="form-control" id="title" name="title">
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea class="form-control" id="description" name="description" rows="5"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="task-image" class="form-label">Image</label>
+      <input class="form-control" type="file" id="task-image" name="task-image" accept="jpg/png">
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Submit form</button>
+    </div>
+</form>
+
+{% endblock content %}

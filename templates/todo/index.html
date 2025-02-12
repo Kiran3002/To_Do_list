@@ -1,0 +1,80 @@
+
+
+
+{% load static %}
+{% block content %}
+<div class="container">
+
+
+    <div class="col-6 offset-3">
+        <img src="{% static 'images/l2.jpg' %}" alt="" class="img-fluid">
+        <div class="text-center fs-3 fw-bold p-3">
+            Welcome {{ request.user.username }} !
+        </div>
+    </div>
+
+    <!-- container for tasks -->
+    <div class="row m-0 mt-3">
+
+        
+
+        {% if tasks %}
+            {% for item in tasks %}
+                <div class="col-12 border mb-3 {% if item.completed %} bg-success {% endif %}">
+                    <div class="row m-0">
+                        {% if item.image %}
+                        <div class="col-2">
+                            <img src="{{ item.image.url }}" class="img-fluid">
+
+                        </div>
+                        {% endif %}
+                        <div class="{% if item.image %} col-8 {% else %} col-10 {% endif %} mb-2">
+                            <div class="fs-5 fw-bold">
+                                {{item.title}}
+                            </div>
+                            <div class="fs-6">
+                                {{item.description}}
+                                <small class="text_muted">
+                                    Added @ {{item.created_at}}.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+
+                            <div>
+                                <a class="text-decoration-none" 
+                                href="{% url 'update_task' item.id %}">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                            </div>
+                            
+
+                            <div>
+                                <a class="text-decoration-none" 
+                                href="{% url 'delete-task' item.id %}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </div>
+
+                            <div>
+                                <a class="text-decoration-none"
+                                href="{% url 'complete-task' item.id %}">
+                                    <i class="fa-solid fa-user-check"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12 text-center">
+                <div class="fs-4 fw-bold">
+                    No Task Found
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock content %}

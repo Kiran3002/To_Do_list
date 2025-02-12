@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+
+    <!-- container for tasks -->
+    <div class="row m-0 mt-3">
+
+        {% if contact %}
+            {% for item in contact %}
+                <div class="col-12 border mb-3">
+                    <div class="row m-0">
+                        <div class="col-10 mb-2">
+                            <div class="fs-5 fw-bold">
+                                {{item.name}}
+                            </div>
+                            <div class="fs-5 fw-bold">
+                                {{item.email}}
+                            </div>
+                            <div class="fs-5 fw-bold">
+                                {{item.phone}}
+                            </div>
+                            <div class="fs-6">
+                                {{item.description}}
+                                
+                            </div>
+                        </div>
+                        <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+
+                            <div>
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </div>
+
+                            <div>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+
+                            <div>
+                                <i class="fa-solid fa-user-check"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12 text-center">
+                <div class="fs-4 fw-bold">
+                    No contact Found
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock content %}
